@@ -381,7 +381,7 @@ Este projeto é de código aberto e está disponível para uso pessoal e comerci
 
 ## 💬 Contato
 
-- 💼 **LinkedIn**: [Seu perfil](https://www.linkedin.com/in/daniel-moreira-87b9b42ba/)
+- 💼 **LinkedIn**: [Perfil Linkedin](https://www.linkedin.com/in/daniel-moreira-87b9b42ba/)
 - 🐙 **GitHub**: [@danexplore](https://github.com/danexplore)
 - 📧 **Email**: danielbatistamor@gmail.com
 - 💬 **WhatsApp**: +55 61 991808196
@@ -390,7 +390,7 @@ Este projeto é de código aberto e está disponível para uso pessoal e comerci
 
 <div align="center">
 
-**Desenvolvido com** ❤️ **e IA em menos de 5 horas**
+**Desenvolvido com** ❤️ **e IA em menos de 3 horas**
 
 **Stack:** React • TypeScript • Tailwind CSS • Vite • shadcn/ui
 
