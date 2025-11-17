@@ -1,11 +1,53 @@
 import { useState } from "react"
 import { MessageCircle, X } from "lucide-react"
 
+declare global {
+  interface Window {
+    gtag?: (event: string, action: string, data?: Record<string, unknown>) => void
+  }
+}
+
 export function WhatsAppFloat() {
   const [isOpen, setIsOpen] = useState(false)
   const whatsappNumber = "5561991808196"
 
   const handleWhatsAppClick = () => {
+    // Enviar webhook de clique no WhatsApp
+    const whatsappClickPayload = {
+      event: 'whatsapp_button_click',
+      timestamp: new Date().toISOString(),
+      session: {
+        userAgent: navigator.userAgent,
+        language: navigator.language,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        screenResolution: `${window.innerWidth}x${window.innerHeight}`,
+        referrer: document.referrer || 'direct',
+        currentUrl: window.location.href,
+        viewportWidth: window.innerWidth,
+        viewportHeight: window.innerHeight,
+      },
+      performance: {
+        pageLoadTime: performance.now(),
+      }
+    }
+
+    fetch('https://n8n.ecosysauto.com.br/webhook/teste-form', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(whatsappClickPayload),
+    }).catch(() => {
+      console.log('Webhook de clique WhatsApp enviado')
+    })
+
+    // Enviar evento para Google Ads
+    if (window.gtag) {
+      window.gtag('event', 'whatsapp_click', {
+        'send_to': 'AW-17730505723/NbaCCJDm3cEbEPuXyIZC'
+      })
+    }
+
     const message = "Olá! Vim através do seu portfólio e gostaria de fazer um orçamento."
     const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
     window.open(url, "_blank")
