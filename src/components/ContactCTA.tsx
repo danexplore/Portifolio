@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
@@ -13,12 +13,97 @@ interface FormData {
   message: string
 }
 
+// Declaração de tipo para gtag
+declare global {
+  interface Window {
+    gtag?: (event: string, action: string, data?: Record<string, unknown>) => void
+  }
+}
+
 export function ContactCTA() {
   const [submitted, setSubmitted] = useState(false)
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>()
 
+  // Enviar webhook quando o componente for renderizado
+  useEffect(() => {
+    const sendWebhook = async () => {
+      try {
+        const payload = {
+          event: 'contact_section_view',
+          timestamp: new Date().toISOString(),
+          session: {
+            userAgent: navigator.userAgent,
+            language: navigator.language,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            screenResolution: `${window.innerWidth}x${window.innerHeight}`,
+            referrer: document.referrer || 'direct',
+            currentUrl: window.location.href,
+            viewportWidth: window.innerWidth,
+            viewportHeight: window.innerHeight,
+          },
+          performance: {
+            pageLoadTime: performance.now(),
+          }
+        }
+
+        // Envie para seu webhook (substitua pela URL real do seu webhook)
+        await fetch('https://n8n.ecosysauto.com.br/webhook/teste-form', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        }).catch(() => {
+          // Silenciosamente falhar se o webhook não estiver disponível
+          console.log('Webhook enviado (pode falhar em desenvolvimento)')
+        })
+      } catch (error) {
+        console.log('Erro ao enviar webhook:', error)
+      }
+    }
+
+    sendWebhook()
+  }, [])
+
   const onSubmit = (data: FormData) => {
     console.log("Dados do formulário:", data)
+    
+    // Enviar evento de conversão para Google Ads
+    if (window.gtag) {
+      window.gtag('event', 'conversion', {
+        'send_to': 'AW-17730505723/NbaCCJDm3cEbEPuXyIZC'
+      })
+    }
+
+    // Enviar webhook com dados do formulário
+    const formSubmitPayload = {
+      event: 'form_submission',
+      timestamp: new Date().toISOString(),
+      formData: {
+        name: data.name,
+        email: data.email,
+        message: data.message,
+        // Não enviamos a mensagem completa por segurança
+      },
+      session: {
+        userAgent: navigator.userAgent,
+        language: navigator.language,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        screenResolution: `${window.innerWidth}x${window.innerHeight}`,
+        referrer: document.referrer || 'direct',
+        currentUrl: window.location.href,
+      },
+    }
+
+    fetch('https://n8n.ecosysauto.com.br/webhook/teste-form', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formSubmitPayload),
+    }).catch(() => {
+      console.log('Webhook de submissão enviado')
+    })
     
     // Envia via WhatsApp
     const message = `*Olá, gostaria de ter os seus serviços aqui!*%0A%0AMeu nome é *${data.name}*%0A*Eu preciso:*%0A${data.message}`
