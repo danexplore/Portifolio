@@ -19,6 +19,12 @@ export function Header() {
             Sobre Mim
           </button>
           <button
+            onClick={() => scrollToSection("experiencia")}
+            className="text-sm font-medium text-abbey hover:text-danube transition-colors"
+          >
+            Experiência
+          </button>
+          <button
             onClick={() => scrollToSection("casos")}
             className="text-sm font-medium text-abbey hover:text-danube transition-colors"
           >

@@ -1,5 +1,6 @@
 import { Header } from "./components/Header"
 import { Hero } from "./components/Hero"
+import { Experience } from "./components/Experience"
 import { CaseStudies } from "./components/CaseStudies"
 import { GithubProjects } from "./components/GithubProjects"
 import { DashboardsAndInterfaces } from "./components/DashboardsAndInterfaces"
@@ -13,6 +14,7 @@ function App() {
       <Header />
       <main>
         <Hero />
+        <Experience />
         <CaseStudies />
         <GithubProjects />
         <DashboardsAndInterfaces />
