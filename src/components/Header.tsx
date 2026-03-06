@@ -6,6 +6,7 @@ const navItems = [
   { label: "Skills", id: "skills" },
   { label: "Experiência", id: "experiencia" },
   { label: "Estudos de Caso", id: "casos" },
+  { label: "EcoTranscribe AI", id: "ecotranscribe" },
   { label: "Projetos", id: "projetos" },
   { label: "Contato", id: "contato-cta" },
 ]

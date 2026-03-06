@@ -4,6 +4,7 @@ import { Skills } from "./components/Skills"
 import { Experience } from "./components/Experience"
 import { CaseStudies } from "./components/CaseStudies"
 import { GithubProjects } from "./components/GithubProjects"
+import { EcoTranscribeFeature } from "./components/EcoTranscribeFeature"
 import { DashboardsAndInterfaces } from "./components/DashboardsAndInterfaces"
 import { ContactCTA } from "./components/ContactCTA"
 import { Footer } from "./components/Footer"
@@ -18,6 +19,7 @@ function App() {
         <Skills />
         <Experience />
         <CaseStudies />
+        <EcoTranscribeFeature />
         <GithubProjects />
         <DashboardsAndInterfaces />
         <ContactCTA />
