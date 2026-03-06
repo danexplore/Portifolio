@@ -1,5 +1,5 @@
 import { Button } from "./ui/button"
-import { ArrowDown, Sparkles, TrendingUp, Database } from "lucide-react"
+import { ArrowDown, Sparkles, TrendingUp, Database, FolderOpen } from "lucide-react"
 
 export function Hero() {
   const scrollToProjects = () => {
@@ -61,24 +61,23 @@ export function Hero() {
               </div>
               <p className="text-sm text-abbey/70 font-medium mt-1">Automação</p>
             </div>
+            <div className="flex flex-col items-center">
+              <div className="flex items-center gap-2 text-3xl font-bold text-danube">
+                <FolderOpen className="w-8 h-8" />
+                10+
+              </div>
+              <p className="text-sm text-abbey/70 font-medium mt-1">Projetos</p>
+            </div>
           </div>
 
           {/* Descrição mais impactante */}
           <p className="text-xl md:text-2xl text-abbey max-w-3xl mx-auto leading-relaxed animate-delay-3 font-medium">
-            Analista de Dados e Desenvolvedor especializado em{" "}
-            <span className="text-danube font-bold">Inteligência Artificial</span>.
+            Analista de Dados e Desenvolvedor com foco em{" "}
+            <span className="text-danube font-bold">resultado de negócio</span>.
             <br />
-            Extraio insights valiosos, automatizo processos e construo{" "}
-            <span className="text-danube font-bold">soluções que impactam</span> diretamente seus resultados.
+            Construo pipelines, dashboards, APIs e automações com IA que{" "}
+            <span className="text-danube font-bold">transformam dados brutos</span> em vantagem competitiva.
           </p>
-
-          {/* Badge informativo com IA */}
-          <div className="inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border-2 border-purple-500/30 rounded-full animate-delay-3">
-            <Sparkles className="w-5 h-5 text-purple-600" />
-            <span className="text-sm md:text-base font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Este site foi feito com IA em menos de 3 horas ⚡
-            </span>
-          </div>
 
           {/* CTAs maiores e mais chamativos */}
           <div className="flex flex-col sm:flex-row gap-5 justify-center items-center animate-delay-4 pt-6">
