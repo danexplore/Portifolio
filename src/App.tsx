@@ -1,8 +1,10 @@
 import { Header } from "./components/Header"
 import { Hero } from "./components/Hero"
+import { Skills } from "./components/Skills"
 import { Experience } from "./components/Experience"
 import { CaseStudies } from "./components/CaseStudies"
 import { GithubProjects } from "./components/GithubProjects"
+import { EcoTranscribeFeature } from "./components/EcoTranscribeFeature"
 import { DashboardsAndInterfaces } from "./components/DashboardsAndInterfaces"
 import { ContactCTA } from "./components/ContactCTA"
 import { Footer } from "./components/Footer"
@@ -14,8 +16,10 @@ function App() {
       <Header />
       <main>
         <Hero />
+        <Skills />
         <Experience />
         <CaseStudies />
+        <EcoTranscribeFeature />
         <GithubProjects />
         <DashboardsAndInterfaces />
         <ContactCTA />
